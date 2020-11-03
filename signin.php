@@ -2,30 +2,40 @@
 
 $title = 'Accueil - La Chouette Coin';
 require 'includes/header.php';
-require 'includes/functions.php';
+
 if (!empty($_POST['email_signup']) && !empty($_POST['password1_signup']) && !empty($_POST['username_signup']) && isset($_POST['submit_signup'])) {
     $email = htmlspecialchars($_POST['email_signup']);
     $password1 = htmlspecialchars($_POST['password1_signup']);
     $password2 = htmlspecialchars($_POST['password2_signup']);
     $username = htmlspecialchars($_POST['username_signup']);
 
-    inscription($email, $username, $password1, $password2, $conn);
-}
+    if (inscription($email, $username, $password1, $password2)) {
+        echo "L'utilisateur a bien été enregistrer";
+    }
+} elseif (!empty($_POST['email_login']) && !empty($_POST['password_login']) && isset($_POST['submit_login'])) {
+    $email = strip_tags($_POST['email_login']);
+    $password = strip_tags($_POST['password_login']);
 
-var_dump($_POST);
+    connexion($email, $password);
+    var_dump($_POST);
+} else {
+    if (isset($_POST)) {
+        unset($_POST);
+    }
+}
 ?>
 
 <div class="row">
     <div class="col-6">
+        <h3>S'inscrire</h3>
         <form
             action="<?php $_SERVER['REQUEST_URI']; ?>"
             method="POST">
             <div class="form-group">
-                <label for="email_signup">Email address</label>
+                <label for="email_signup">Adresse email</label>
                 <input type="email" class="form-control" id="email_signup" aria-describedby="emailHelp"
                     name="email_signup" required>
-                <small id="emailHelp" class="form-text text-muted">Nous ne partegerons jamais votre email avec qui que
-                    ce soit</small>
+                <small id="emailHelp" class="form-text text-muted">Nom d'utilisateur</small>
             </div>
 
             <div class="form-group">
@@ -52,26 +62,37 @@ var_dump($_POST);
             <button type="submit" class="btn btn-primary" name="submit_signup">Submit</button>
         </form>
     </div>
+
     <div class="col-6">
-        <div class="form-group">
-            <label for="InputEmail">Email address</label>
-            <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" name="email_signup"
+        <h3>Se connecter</h3>
+        <form
+            action="<?php $_SERVER['REQUEST_URI']; ?>"
+            method="POST">
+
+
+            <div class="form-group">
+                <label for="email_login">Adresse email</label>
+                <input type="email" class="form-control" id="email_login" aria-describedby="emailHelp"
+                    name="email_login" required>
+                <small id="emailHelp" class="form-text text-muted">Nous ne partegerons jamais votre email avec qui que
+                    ce
+                    soit</small>
+            </div>
+
+            <!-- <div class="form-group">
+            <label for="InputUsername">Nom d'utilisateur</label>
+            <input type="text" class="form-control" id="InputUsername" aria-describedby="userHelp" name="username_login"
                 required>
-            <small id="emailHelp" class="form-text text-muted">Nous ne partegerons jamais votre email avec qui que ce
-                soit</small>
-        </div>
+            <small id="usernameHelp" class="form-text text-muted">Saisissez votre nom d'utilisateur</small>
+        </div> -->
+            <div class="form-group">
+                <label for="password_login">Choisissez un mot de passe</label>
+                <input type="password" class="form-control" id="password_login" name="password_login" required>
+                <small id="passwordHelp" class="form-text text-muted">Saisissez votre mot de passe</small>
+            </div>
 
-        <div class="form-group">
-            <label for="InputUsername">Uername</label>
-            <input type="email" class="form-control" id="InputUsername" aria-describedby="userHelp"
-                name="username_signup" required>
-            <small id="emailHelp" class="form-text text-muted">Choisissez un nom d'utilisateur, il doit être
-                unique</small>
-        </div>
-        <div class="form-group">
-            <label for="InputPassword1">Choisissez un mot de passe</label>
-            <input type="password" class="form-control" id="InputPassword1" name="password1_signup" required>
-        </div>
+            <button type="submit" class="btn btn-primary" name="submit_login">Submit</button>
 
+        </form>
     </div>
 </div>

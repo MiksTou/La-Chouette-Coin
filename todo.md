@@ -3,7 +3,7 @@
 2. Créer une connexion à la base de données (avec PDO) dans un config.php dans le dossier includes, qui contient tous fichiers qui seront inclus sur des pages.
 
 3. Créer une base de données qui représente la structure de notre projet [le_chouette_coin>users,products,categories].
-
+===============================================================================================================================
 4. Créer un formulaire pour l'inscription des utilisateurs qui reprend les informations de connexion.
 
     -> Ne pas oublier l'action et la méthode POST du formulaire,
@@ -33,3 +33,10 @@
     -> Créer une requête d'insertion avec la préparation de requête en PDO et des marqueurs nommés. (prepare(), :value et bindValue(:value))
 
 7. Factoriser le code en créant une fonction qui réalise l'ajout d'utilisateurs à partir des variables nécessaires pour chaque utilisateur.
+8. Ajuster le formulaire pour la connexion.
+    -> Uniquement 2 champs, email et mot de passe
+    -> changer les names
+9. Créer une fonction de connection
+    -> Vérification de l'existence de l'email dans la base de données (1er if, avec une requête SELECT et un fetch())
+    -> Vérification du mot de apsse hashed (2e if avec )
+    -> Lancement d'une session (avec $_SESSSION).
