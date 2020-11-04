@@ -1,5 +1,5 @@
 <?php
-   require 'includes/functions.php';
+   require 'functions.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -28,10 +28,9 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php">Accueil</a>
+                    <a class="dropdown-item" href="products.php">Produits</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Produits</a>
-                </li>
+
             </ul>
             <ul class="navbar-nav">
                 <?php if (!empty($_SESSION)) { ?>
@@ -44,6 +43,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="#">Profil</a>
+                        <a class="dropdown-item" href="addproducts.php">Ajouter un article</a>
                         <a class="dropdown-item" href="?logout">Déconnexion</a>
                     </div>
                 </div>

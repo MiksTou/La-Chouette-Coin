@@ -39,7 +39,7 @@ if (!empty($_POST['email_signup']) && !empty($_POST['password1_signup']) && !emp
             </div>
 
             <div class="form-group">
-                <label for="username_signup">Uername</label>
+                <label for="username_signup">Username</label>
                 <input type="text" class="form-control" id="username_signup" aria-describedby="userHelp"
                     name="username_signup" required>
                 <small id="textHelp" class="form-text text-muted">Choisissez un nom d'utilisateur, il doit être
